@@ -38,9 +38,6 @@ Open url `http://127.0.0.1:60708` in browser
 
 [4ndersonLin/awesome-cloud-security: 🛡️ Awesome Cloud Security Resources ⚔️](https://github.com/4ndersonLin/awesome-cloud-security)
 
-
-[4ndersonLin/awesome-cloud-security: 🛡️ Awesome Cloud Security Resources ⚔️](https://github.com/4ndersonLin/awesome-cloud-security)
-
 > # [](https://github.com/4ndersonLin/awesome-cloud-security#contents)Contents
 > 
 > -   [Standards](https://github.com/4ndersonLin/awesome-cloud-security#standards)
