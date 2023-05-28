@@ -102,6 +102,8 @@ sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 sudo chmod g+rwx "$HOME/.docker" -R
 ```
 
+
+Configure Docker to start on boot with systemd
 ```
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
