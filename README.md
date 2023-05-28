@@ -125,6 +125,10 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 minikube start
 minikube addons enable registry
 minikube start --addons registry
+```
+
+
+```
 kamel install
 ```
 
