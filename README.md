@@ -2,8 +2,122 @@
 
 
 
-### Install Camel-K
+## k83 [K3s](https://k3s.io/)
+
+```
+curl -sfL https://get.k3s.io | sh - 
+```
+
+Check for Ready node, takes ~30 seconds 
+```
+sudo k3s kubectl get node 
+```
+sudo k3s server &
+Kubeconfig is written to /etc/rancher/k3s/k3s.yaml
+```
+sudo k3s kubectl get node
+```
+On a different node run the below command. 
+NODE_TOKEN comes from /var/lib/rancher/k3s/server/node-token on your server
+```
+sudo k3s agent --server https://myserver:6443 --token ${NODE_TOKEN}
+```
+
+## [Installing Camel K on K3s :: Apache Camel](https://camel.apache.org/camel-k/1.12.x/installation/registry/k3s.html)
+
+> kubectl -n camel-k-test create secret generic my-registry-secret --from-file=$HOME/.docker/config.json
+Installing Camel K on K3s
+
+```shell
+kubectl create namespace camel-k-test || true
+```
+kubectl -n camel-k-test create secret generic my-registry-secret --from-file=$HOME/.docker/config.json
+
+
+
+
+## Install Camel-K
+
 See the Apache Camel K installation page for details: (https://camel.apache.org/camel-k/next/installation/installation.html).
+
+
+Install Kustomize by downloading precompiled binaries.
+```shell
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+```
+
+if you’re using Linux, you can put kamel in /usr/bin
+```shell
+cp kamel /usr/bin .
+```
+
+# Clone the project repository
+```shell
+dnf install -y git
+git clone https://github.com/apache/camel-k.git
+cd camel-k
+```
+
+# You can use any release branch or skip this step to use it the last code on `main`
+```shell
+git checkout release-a.b.x
+```
+
+```
+cd install
+kubectl apply -k setup-cluster
+kubectl apply -k setup
+kubectl apply -k operator
+kubectl apply -k platform
+```
+
+## install docker
+
+
+install docker
+```
+dnf install -y docker
+```
+
+config docker
+```
+sudo groupadd docker
+sudo usermod -aG docker $USER
+reboot
+```
+
+activate the changes to groups:
+```
+newgrp docker
+```
+
+run docker commands without sudo.
+```
+docker run hello-world
+```
+
+if permission denied
+```
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+```
+
+```
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+```
+
+
+## Install minikube
+
++ [minikube start - minikube](https://minikube.sigs.k8s.io/docs/start/)
+
+
+
+```
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
 
 ```shell
 minikube start
